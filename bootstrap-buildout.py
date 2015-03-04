@@ -84,7 +84,6 @@ if not options.allow_site_packages:
     # this will remove them from the path to ensure that incompatible versions
     # of setuptools are not in the path
     import site
-    import pdb; pdb.set_trace()
     # inside a virtualenv, there is no 'getsitepackages'.
     # We can't remove these reliably
     if hasattr(site, 'getsitepackages'):
