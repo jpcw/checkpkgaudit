@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import os
 
 
-version = '0.1-dev'
+version = '0.1.dev0'
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,9 +25,9 @@ long_description = '\n\n'.join([read_file(*pathes) for pathes in desc_files])
 install_requires = ['nagiosplugin']
 
 if sys.version_info < (2, 7):
-    extras_require = {'test': ['setuptools', 'unittest2', 'argparse']}
+    extras_require = {'test': ['setuptools', 'mock', 'unittest2', 'argparse']}
 else:
-    extras_require = {'test': ['setuptools']}
+    extras_require = {'test': ['setuptools', 'mock']}
 
 setup(name='checkpkgaudit',
       version=version,
@@ -66,6 +66,8 @@ setup(name='checkpkgaudit',
       extras_require=extras_require,
       entry_points="""
       # -*- Entry points: -*-
+      [console_scripts]
+      check_pkgaudit = checkpkgaudit.checkpkgaudit:main
       """,
       )
 

@@ -32,7 +32,7 @@ class CheckPkgAudit(nagiosplugin.Resource):
             self.audit_cmd = 'pkg -j %s audit' % jail
             hostname = jail
 
-        _log.debug('querying system with "%s" command', self.audit_cmd)
+        _log.debug('querying system with "%s" command', self.audit_cmd)  # pragma: no cover
 
         try:
             proc = subprocess.Popen(self.audit_cmd.split(),
@@ -48,7 +48,7 @@ class CheckPkgAudit(nagiosplugin.Resource):
                     # message = "Try running 'pkg audit -F' first"
                     message = stderr.split('.')[-1]
                 message = "%s %s" % (hostname, message)
-                _log.info(message)
+                _log.info(message)  # pragma: no cover
                 raise nagiosplugin.CheckError(message)
 
             else:
@@ -132,7 +132,7 @@ def main():
                                AuditSummary())
     check.main(verbose=args.verbose)
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 # vim:set et sts=4 ts=4 tw=80:
