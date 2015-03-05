@@ -4,8 +4,6 @@
 """Check FreeBSD pkg audit plugin.
 """
 
-__docformat__ = 'restructuredtext en'
-
 import argparse
 import logging
 import platform
@@ -13,13 +11,40 @@ import subprocess
 
 import nagiosplugin
 
+__docformat__ = 'restructuredtext en'
 
 _log = logging.getLogger('nagiosplugin')
-hostname = platform.node()
+
+
+def _popen(cmd):  # pragma: no cover
+    """try catched subprocess.popen."""
+    try:
+        proc = subprocess.Popen(cmd,
+                                stdin=subprocess.PIPE,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        stdout, stderr = proc.communicate()
+        return stdout, stderr
+
+    except OSError, e:
+        message = "%s" % e
+        raise nagiosplugin.CheckError(message)
+
+
+def _get_jails():
+    """Provide running jails."""
+    jailnames = []
+    jls = subprocess.check_output('jls')
+    jails = jls.splitlines()[1:]
+    if jails:
+        jailnames = [jail.split()[2] for jail in jails]
+    return jailnames
 
 
 class CheckPkgAudit(nagiosplugin.Resource):
     """Check FreeBSD pkg audit plugin."""
+
+    hostname = platform.node()
 
     def pkg_audit(self, jail=None):
         """Run pkg audit.
@@ -30,48 +55,36 @@ class CheckPkgAudit(nagiosplugin.Resource):
         self.audit_cmd = 'pkg audit'
         if jail is not None:
             self.audit_cmd = 'pkg -j %s audit' % jail
-            hostname = jail
+            self.hostname = jail
 
-        _log.debug('querying system with "%s" command', self.audit_cmd)  # pragma: no cover
+        _log.debug('querying system with "%s" command', self.audit_cmd)
 
-        try:
-            proc = subprocess.Popen(self.audit_cmd.split(),
-                                    stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE)
-            stdout, stderr = proc.communicate()
+        stdout, stderr = _popen(self.audit_cmd.split())
 
-            if stderr:
-                message = stderr.splitlines()[-1]
+        if stderr:
+            message = stderr.splitlines()[-1]
 
-                if message.startswith('pkg: vulnxml file'):
-                    # message = "Try running 'pkg audit -F' first"
-                    message = stderr.split('.')[-1]
-                message = "%s %s" % (hostname, message)
-                _log.info(message)  # pragma: no cover
-                raise nagiosplugin.CheckError(message)
-
-            else:
-                stdout = stdout.splitlines()[-1]
-                problems = int(stdout.split()[0])
-
-                return problems
-
-        except OSError, e:
-            message = "%s" % e
+            if message.startswith('pkg: vulnxml file'):
+                # message = "Try running 'pkg audit -F' first"
+                message = stderr.split('.')[-1]
+            message = "%s %s" % (self.hostname, message)
+            _log.info(message)
             raise nagiosplugin.CheckError(message)
+
+        else:
+            stdout = stdout.splitlines()[-1]
+            problems = int(stdout.split()[0])
+
+            return problems
 
     def probe(self):
         """Run pkg audit for host and running jails."""
 
-        yield nagiosplugin.Metric(hostname, self.pkg_audit(), min=0,
-                                  context="pkg_audit")
-
+        yield nagiosplugin.Metric(self.hostname, self.pkg_audit(),
+                                  min=0, context="pkg_audit")
         # yield running jails
-        jls = subprocess.check_output('jls')
-        jails = jls.splitlines()[1:]
-        if jails:
-            jailnames = [jail.split()[2] for jail in jails]
+        jailnames = _get_jails()
+        if jailnames:
             for jailname in jailnames:
                 yield nagiosplugin.Metric(jailname, self.pkg_audit(jailname),
                                           min=0, context="pkg_audit")
@@ -91,7 +104,6 @@ class AuditSummary(nagiosplugin.Summary):
 
     def ok(self, results):
         """Summarize OK(s)."""
-
         return '0 vulnerabilities found !'
 
     def problem(self, results):
@@ -105,10 +117,10 @@ class AuditSummary(nagiosplugin.Summary):
                            in results.most_significant)
             hosts = ', '.join(sorted((result.metric.name for result
                                       in results.most_significant)))
-            return 'found %d vulnerable(s) pkg(s) in : %s ' % (problems, hosts)
+            return 'found %d vulnerable(s) pkg(s) in : %s' % (problems, hosts)
 
 
-def parse_args():
+def parse_args():  # pragma: no cover
     """Arguments parser."""
     argp = argparse.ArgumentParser(description=__doc__)
     argp.add_argument('-v', '--verbose', action='count', default=0,
@@ -118,7 +130,7 @@ def parse_args():
 
 
 @nagiosplugin.guarded
-def main():
+def main():  # pragma: no cover
     """Run check.
 
     critical argument is volontary hardcoded here, one pkg vulnerability
@@ -130,7 +142,7 @@ def main():
                                nagiosplugin.ScalarContext('pkg_audit', None,
                                                           '@1:'),
                                AuditSummary())
-    check.main(verbose=args.verbose)
+    check.main(verbose=args.verbose, timeout=0)
 
 if __name__ == '__main__':  # pragma: no cover
     main()

@@ -67,7 +67,7 @@ setup(name='checkpkgaudit',
       entry_points="""
       # -*- Entry points: -*-
       [console_scripts]
-      check_pkgaudit = checkpkgaudit.checkpkgaudit:main
+      check_pkgaudit = checkpkgaudit:main
       """,
       )
 
