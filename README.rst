@@ -5,6 +5,31 @@ Introduction
 
 Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
 
+usage
+-------
+
+This check runs pkg audit over your host and its runnung jails
+
+sample outputs :
+
++ Ok
+ ::
+ 
+ CHECKPKGAUDIT OK - 0 vulnerabilities found ! | 'centaure.treshautdebit.com'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
+
+
++ Critical
+ 
+ ::
+
+   CHECKPKGAUDIT CRITICAL - found 2 vulnerable(s) pkg(s) in : ns2, ns3 | 'centaure.treshautdebit.com'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=1;;@1:;0 ns3=1;;@1:;0 smtp=0;;@1:;0
+
+ Notice that summary show the total amount problems and concerned host and jails :
+ found *2* vulnerable(s) pkg(s) in : *ns2, ns3* 
+ 
+ but performance data is detailled by host|jail
+
+
 
 .. image:: https://pypip.in/license/<PYPI_PKG_NAME>/badge.svg
     :target: https://pypi.python.org/pypi/<PYPI_PKG_NAME>/
@@ -46,5 +71,22 @@ Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
       :target: https://www.codacy.com/public/jpcamguilhem/checkpkgaudit
           :alt: codacy
 
+Install
+-------
+
+easy_install | pip within or not a virtualenv::
+    
+    pip install | easy_install paulla.check_planetdiff
+
+checkpkgaudit is located at /usr/local/bin/check_pkgaudit
 
 
+Nagios|icinga like configuration
+-----------------------------------
+
+check_planetdiff could be called localy or remotely via check_by_ssh or NRPE.
+
+here a sample definition to check remotely by ssh 
+
+Command definition ::
+    

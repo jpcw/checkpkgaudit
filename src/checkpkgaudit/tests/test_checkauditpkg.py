@@ -49,12 +49,8 @@ class Test_CheckPkgAudit(unittest.TestCase):
                        " Try running 'pkg audit -F' first")
         with mock.patch("checkpkgaudit.checkpkgaudit._popen") as _popen:
             _popen.return_value = '', err_message
-            with self.assertRaises(CheckError) as context:
-                out = "Try running 'pkg audit -F' first"
-                check.pkg_audit()
-                self.assertTrue(out in context.exception)
-                check.pkg_audit(jail='supervision')
-                self.assertTrue(out in context.exception)
+            with self.assertRaises(CheckError):
+                check.pkg_audit()  # NOQA
 
     def test_pkg_audit_not_installed_in_jail(self):
         check = checkpkgaudit.CheckPkgAudit()
@@ -62,21 +58,16 @@ class Test_CheckPkgAudit(unittest.TestCase):
                        " Try running 'pkg audit -F' first")
         with mock.patch("checkpkgaudit.checkpkgaudit._popen") as _popen:
             _popen.return_value = '', err_message
-            with self.assertRaises(CheckError) as context:
-                out = "Try running 'pkg audit -F' first"
-                check.pkg_audit(jail='supervision')
-                self.assertTrue(out in context.exception)
+            with self.assertRaises(CheckError):
+                check.pkg_audit(jail='supervision')  # NOQA
 
     def test_pkg_audit_not_authorised_inside_jail(self):
         check = checkpkgaudit.CheckPkgAudit()
         err_message = "pkg: jail_attach(masterdns): Operation not permitted"
         with mock.patch("checkpkgaudit.checkpkgaudit._popen") as _popen:
             _popen.return_value = '', err_message
-            with self.assertRaises(CheckError) as context:
-                out = "Try running 'pkg audit -F' first"
-                # inside jail too
-                check.pkg_audit(jail='masterdns')
-                self.assertTrue(out in context.exception)
+            with self.assertRaises(CheckError):
+                check.pkg_audit(jail='masterdns')  # NOQA
 
     def test_pkg_audit_no_problems(self):
         check = checkpkgaudit.CheckPkgAudit()
