@@ -19,7 +19,7 @@ Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
 .. image:: https://pypip.in/py_versions/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
 
-.. image:: https://pypip.in/version/checkpkgaudit/badge.svg
+.. image:: https://pypip.in/version/checkpkgaudit/badge.svg?text=version
       :target: https://pypi.python.org/pypi/checkpkgaudit/
 
 .. image:: https://api.travis-ci.org/jpcw/checkpkgaudit.svg?branch=master
