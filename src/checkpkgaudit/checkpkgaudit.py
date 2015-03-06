@@ -17,7 +17,7 @@ _log = logging.getLogger('nagiosplugin')
 
 
 def _popen(cmd):  # pragma: no cover
-    """try catched subprocess.popen."""
+    """Try catched subprocess.popen."""
     try:
         proc = subprocess.Popen(cmd,
                                 stdin=subprocess.PIPE,
@@ -32,7 +32,7 @@ def _popen(cmd):  # pragma: no cover
 
 
 def _get_jails():
-    """Provide running jails."""
+    """Provides running jails."""
     jailnames = []
     jls = subprocess.check_output('jls')
     jails = jls.splitlines()[1:]
@@ -78,7 +78,7 @@ class CheckPkgAudit(nagiosplugin.Resource):
             return problems
 
     def probe(self):
-        """Run pkg audit for host and running jails."""
+        """Runs pkg audit over host and running jails."""
 
         yield nagiosplugin.Metric(self.hostname, self.pkg_audit(),
                                   min=0, context="pkg_audit")
@@ -99,7 +99,7 @@ class AuditSummary(nagiosplugin.Summary):
     In case of UKNOWN raised by "pkg audit -F first":
     the single-load text from the context works well.
 
-    In case of problems : we sum pks problems and list each conercened host.
+    In case of problems : we sum pkg problems and list each concerned host.
     """
 
     def ok(self, results):
@@ -107,7 +107,7 @@ class AuditSummary(nagiosplugin.Summary):
         return '0 vulnerabilities found !'
 
     def problem(self, results):
-        """Summarize UNKNOWN or CRITICALS."""
+        """Summarize UNKNOWN(s) or CRITICAL(s)."""
 
         if results.most_significant_state.code == 3:
             return results.first_significant.hint
@@ -131,10 +131,13 @@ def parse_args():  # pragma: no cover
 
 @nagiosplugin.guarded
 def main():  # pragma: no cover
-    """Run check.
+    """Runs check.
 
     critical argument is volontary hardcoded here, one pkg vulnerability
     is enough to have a problem, isn't it ?
+
+    debug me with: check.main(verbose=args.verbose, timeout=0)
+    default timeout (10s) is inherited from nagiosplugim
     """
 
     args = parse_args()
@@ -142,7 +145,7 @@ def main():  # pragma: no cover
                                nagiosplugin.ScalarContext('pkg_audit', None,
                                                           '@1:'),
                                AuditSummary())
-    check.main(verbose=args.verbose, timeout=0)
+    check.main(verbose=args.verbose)
 
 if __name__ == '__main__':  # pragma: no cover
     main()
