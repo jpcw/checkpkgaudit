@@ -5,7 +5,8 @@ python:
   - 3.2
   - 3.3
   - 3.4
-  - pypy
+  - pypy2
+  - pypy3
 install:
   - python bootstrap-buildout.py
   - bin/buildout -N
