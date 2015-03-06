@@ -123,8 +123,7 @@ the service itself ::
 
 testing
 ---------
-    
-    ::
+::
      
      python bootstrap-buildout.py
      bin/buildout -N
