@@ -13,23 +13,51 @@ This check runs pkg audit over your host and its runnung jails
 sample outputs :
 
 + Ok
- ::
-  
- CHECKPKGAUDIT OK - 0 vulnerabilities found ! | 'centaure.treshautdebit.com'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
-
+    
+    ::
+      
+      CHECKPKGAUDIT OK - 0 vulnerabilities found ! | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
+    
 
 + Critical
+    
+    Criical state is returned at first vulnerable pkg. No warning, no configurable threasold, why waiting 2 or more vulnerabilities ?
  
- ::
+    We are talking about security vulnerabilies !
+    
+    Of course, the plugin sum all the vulnerabilities and details each host|jail concerned
 
-   CHECKPKGAUDIT CRITICAL - found 2 vulnerable(s) pkg(s) in : ns2, ns3 | 'centaure.treshautdebit.com'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=1;;@1:;0 ns3=1;;@1:;0 smtp=0;;@1:;0
+    
+    ::
+      
+      CHECKPKGAUDIT CRITICAL - found 2 vulnerable(s) pkg(s) in : ns2, ns3 | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=1;;@1:;0 ns3=1;;@1:;0 smtp=0;;@1:;0
+    
+    Notice that summary show the total amount problems and concerned host and jails :
+    
+    found *2* vulnerable(s) pkg(s) in : *ns2, ns3* but performance data is detailled by host|jail
 
- Notice that summary show the total amount problems and concerned host and jails :
- found *2* vulnerable(s) pkg(s) in : *ns2, ns3* 
- 
- but performance data is detailled by host|jail
-
-
++ Unknown
+    
+    if an error occured during pkg audit, the plugin raise a check error, whirch return an UNKNOWN state.
+    
+    typically UNKNOWN causes
+    
+        + *pkg audit -F* has not been runned on host or a jail
+        
+        ::
+          
+          CHECKPKGAUDIT UNKNOWN - jailname pkg: jail_attach(jailname): Operation not permitted | 'host.domain.tld'=0;;@1:;0
+    
+        + *pkg -j jailname audit* runned as a non sudoer user
+        
+        ::
+          
+          CHECKPKGAUDIT UNKNOWN - jailname  Try running 'pkg audit -F' first | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
+        
+        If you have running jails, sudo is your friend to run this plugin with an unprivileged user. A sample config here ::
+          
+          icinga ALL = NOPASSWD: /usr/local/bin/check_pkgaudit
+          
 
 .. image:: https://pypip.in/license/<PYPI_PKG_NAME>/badge.svg
     :target: https://pypi.python.org/pypi/<PYPI_PKG_NAME>/
@@ -76,7 +104,7 @@ Install
 
 easy_install | pip within or not a virtualenv::
     
-    easy_install | pip install  check_pkgaudit
+    easy_install | pip install check_pkgaudit
 
 checkpkgaudit is located at /usr/local/bin/check_pkgaudit
 
@@ -90,3 +118,16 @@ here a sample definition to check remotely by ssh
 
 Command definition ::
     
+    define command{
+        command_name    check_ssh_pkgaudit
+        command_line    $USER1$/check_by_ssh -H $HOSTADDRESS$ -i /var/spool/icinga/.ssh/id_rsa -C "sudo /usr/local/bin/check_pkgaudit"
+    }
+
+the service itself ::
+    
+    define service{
+        use                     my-service
+        host_name               hostname
+        service_description     pkg audit
+        check_command           check_ssh_pkgaudit!
+    }
