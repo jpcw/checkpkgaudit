@@ -76,7 +76,7 @@ Install
 
 easy_install | pip within or not a virtualenv::
     
-    pip install | easy_install paulla.check_planetdiff
+    easy_install | pip install  check_pkgaudit
 
 checkpkgaudit is located at /usr/local/bin/check_pkgaudit
 
@@ -84,7 +84,7 @@ checkpkgaudit is located at /usr/local/bin/check_pkgaudit
 Nagios|icinga like configuration
 -----------------------------------
 
-check_planetdiff could be called localy or remotely via check_by_ssh or NRPE.
+check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
 
 here a sample definition to check remotely by ssh 
 
