@@ -14,7 +14,7 @@ sample outputs :
 
 + Ok
  ::
- 
+  
  CHECKPKGAUDIT OK - 0 vulnerabilities found ! | 'centaure.treshautdebit.com'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
 
 
