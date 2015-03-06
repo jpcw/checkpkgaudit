@@ -1,6 +1,5 @@
 
 import mock
-import os
 
 try:
     import unittest2 as unittest
@@ -128,15 +127,15 @@ class Test_CheckPkgAudit(unittest.TestCase):
         with mock.patch(mocked) as _get_jails:
             _get_jails.return_value = []
 
-        mocked = "checkpkgaudit.checkpkgaudit.CheckPkgAudit.pkg_audit"
-        with mock.patch(mocked) as pkg_audit:
-            pkg_audit.return_value = 0
+            mocked = "checkpkgaudit.checkpkgaudit.CheckPkgAudit.pkg_audit"
+            with mock.patch(mocked) as pkg_audit:
+                pkg_audit.return_value = 0
 
-        probe = check.probe()
-        host = next(probe)
-        self.assertEqual(type(host), Metric)
-        self.assertEqual(host.name, 'hostname.domain.tld')
-        self.assertEqual(host.value, 0)
+                probe = check.probe()
+                host = next(probe)
+                self.assertEqual(type(host), Metric)
+                self.assertEqual(host.name, 'hostname.domain.tld')
+                self.assertEqual(host.value, 0)
 
     def test_probe_host_with_jails(self):
         check = checkpkgaudit.CheckPkgAudit()
@@ -145,21 +144,15 @@ class Test_CheckPkgAudit(unittest.TestCase):
         with mock.patch(mocked) as _get_jails:
             _get_jails.return_value = ['inxeistent_jail']
 
-        mocked = "checkpkgaudit.checkpkgaudit.CheckPkgAudit.pkg_audit"
-        with mock.patch(mocked) as pkg_audit:
-            pkg_audit.return_value = 0
+            mocked = "checkpkgaudit.checkpkgaudit.CheckPkgAudit.pkg_audit"
+            with mock.patch(mocked) as pkg_audit:
+                pkg_audit.return_value = 0
 
-        probe = check.probe()
-        host = next(probe)
-        self.assertIsNotNone(host)
-        if os.geteuid() != 0:
-            with self.assertRaises(CheckError) as context:
+                probe = check.probe()
+                host = next(probe)
+                self.assertIsNotNone(host)
                 jail = next(probe)
                 self.assertIsNotNone(jail)
-                self.assertIsNotNone(context)
-        else:
-            jail = next(probe)
-            self.assertIsNotNone(jail)
 
 
 class Test_AuditSummary(unittest.TestCase):
