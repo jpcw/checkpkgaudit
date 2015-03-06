@@ -26,7 +26,7 @@ def _popen(cmd):  # pragma: no cover
         stdout, stderr = proc.communicate()
         return stdout, stderr
 
-    except OSError, e:
+    except OSError as e:
         message = "%s" % e
         raise nagiosplugin.CheckError(message)
 
