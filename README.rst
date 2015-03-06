@@ -8,7 +8,7 @@ Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
 usage
 -------
 
-This check runs pkg audit over your host and its runnung jails
+This check runs pkg audit over your host and its running jails
 
 sample outputs :
 
@@ -21,9 +21,9 @@ sample outputs :
 
 + Critical
     
-    Criical state is returned at first vulnerable pkg. No warning, no configurable threasold, why waiting 2 or more vulnerabilities ?
+    Critical state is reached with first vulnerable pkg. No warning, no configurable threasold, why waiting 2 or more vulnerabilities ?
  
-    We are talking about security vulnerabilies !
+    We are talking about security vulnerabilities !
     
     Of course, the plugin sum all the vulnerabilities and details each host|jail concerned
 
@@ -32,13 +32,13 @@ sample outputs :
       
       CHECKPKGAUDIT CRITICAL - found 2 vulnerable(s) pkg(s) in : ns2, ns3 | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=1;;@1:;0 ns3=1;;@1:;0 smtp=0;;@1:;0
     
-    Notice that summary show the total amount problems and concerned host and jails :
+    Notice that summary returns the total amount problems :
     
     found *2* vulnerable(s) pkg(s) in : *ns2, ns3* but performance data is detailled by host|jail
 
 + Unknown
     
-    if an error occured during pkg audit, the plugin raise a check error, whirch return an UNKNOWN state.
+    if an error occured during pkg audit, the plugin raises a check error, which returns an UNKNOWN state.
     
     typically UNKNOWN causes
     
@@ -108,7 +108,7 @@ easy_install | pip within or not a virtualenv::
     
     easy_install | pip install check_pkgaudit
 
-checkpkgaudit is located at /usr/local/bin/check_pkgaudit
+check_pkgaudit is located at /usr/local/bin/check_pkgaudit
 
 
 Nagios|icinga like configuration
