@@ -6,37 +6,27 @@ Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
 
 .. image:: https://pypip.in/license/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
-        :alt: License
 
 .. image:: https://pypip.in/egg/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
-        :alt: Egg Status
 
 .. image:: https://pypip.in/status/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
-        :alt: Development Status
 
 .. image:: https://pypip.in/implementation/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
-        :alt: Supported Python implementations
 
 .. image:: https://pypip.in/py_versions/checkpkgaudit/badge.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
-        :alt: Supported Python versions
-        
 
-  
 .. image:: https://pypip.in/version/checkpkgaudit/badge.svg
       :target: https://pypi.python.org/pypi/checkpkgaudit/
-          :alt: Latest Version
 
 .. image:: https://api.travis-ci.org/jpcw/checkpkgaudit.svg?branch=master
       :target: http://travis-ci.org/jpcw/checkpkgaudit
-          :alt: travis status
 
 .. image:: https://coveralls.io/repos/jpcw/checkpkgaudit/badge.png?branch=master
       :target: https://coveralls.io/r/jpcw/checkpkgaudit
-          :alt: coveralls status
 
 + Source: https://github.com/jpcw/checkpkgaudit
 
