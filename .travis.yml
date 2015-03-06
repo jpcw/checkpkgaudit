@@ -12,3 +12,6 @@ install:
   - bin/buildout -N
 script:
   - make test -k
+after_success:
+  - easy_install coveralls
+  - coveralls
