@@ -95,9 +95,11 @@ sample outputs :
   .. |coveralls| image:: https://coveralls.io/repos/jpcw/checkpkgaudit/badge.png?branch=master
   .. _coveralls: https://coveralls.io/r/jpcw/checkpkgaudit
 
-  .. image:: https://www.codacy.com/project/badge/2c6988a6b9664d7f8af4651e50f63b17 
-      :target: https://www.codacy.com/public/jpcamguilhem/checkpkgaudit
-          :alt: codacy
++ Source: https://github.com/jpcw/checkpkgaudit
+
++ Bugtracker: https://github.com/jpcw/checkpkgaudit/issues
+
+
 
 Install
 -------
@@ -131,3 +133,13 @@ the service itself ::
         service_description     pkg audit
         check_command           check_ssh_pkgaudit!
     }
+
+testing
+---------
+    
+    ::
+     
+     python bootstrap-buildout.py
+     bin/buildout -N
+     bin/test
+     
