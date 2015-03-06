@@ -42,8 +42,6 @@ Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
   .. |coveralls| image:: https://coveralls.io/repos/jpcw/checkpkgaudit/badge.png?branch=master
   .. _coveralls: https://coveralls.io/r/jpcw/checkpkgaudit
 
-+ codacy
-
   .. image:: https://www.codacy.com/project/badge/2c6988a6b9664d7f8af4651e50f63b17 
       :target: https://www.codacy.com/public/jpcamguilhem/checkpkgaudit
           :alt: codacy
