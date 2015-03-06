@@ -133,11 +133,11 @@ def parse_args():  # pragma: no cover
 def main():  # pragma: no cover
     """Runs check.
 
-    critical argument is volontary hardcoded here, one pkg vulnerability
+    Critical argument is volontary hardcoded here, one pkg vulnerability
     is enough to have a problem, isn't it ?
 
-    debug me with: check.main(verbose=args.verbose, timeout=0)
-    default timeout (10s) is inherited from nagiosplugim
+    Debug me with: check.main(verbose=args.verbose, timeout=0)
+    default timeout (10s) is inherited from nagiosplugin.
     """
 
     args = parse_args()
