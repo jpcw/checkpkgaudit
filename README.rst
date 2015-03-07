@@ -63,7 +63,7 @@ sample outputs :
     
     Notice that summary returns the total amount problems :
     
-    found *2* vulnerable(s) pkg(s) in : *ns2, ns3* but performance data is detailled by host|jail
+    found **2** vulnerable(s) pkg(s) in : **ns2, ns3** but performance data is detailled by host|jail
 
 + Unknown
     
