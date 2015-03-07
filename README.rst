@@ -75,13 +75,13 @@ sample outputs :
         
         ::
           
-          CHECKPKGAUDIT UNKNOWN - jailname pkg: jail_attach(jailname): Operation not permitted | 'host.domain.tld'=0;;@1:;0
-    
+          CHECKPKGAUDIT UNKNOWN - jailname  Try running 'pkg audit -F' first | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
+        
         + *pkg -j jailname audit* runned as a non sudoer user
         
         ::
           
-          CHECKPKGAUDIT UNKNOWN - jailname  Try running 'pkg audit -F' first | 'host.domain.tld'=0;;@1:;0 http=0;;@1:;0 masterdns=0;;@1:;0 ns0=0;;@1:;0 ns1=0;;@1:;0 ns2=0;;@1:;0 smtp=0;;@1:;0
+          CHECKPKGAUDIT UNKNOWN - jailname pkg: jail_attach(jailname): Operation not permitted | 'host.domain.tld'=0;;@1:;0
         
         If you have running jails, sudo is your friend to run this plugin with an unprivileged user. A sample config here ::
           
