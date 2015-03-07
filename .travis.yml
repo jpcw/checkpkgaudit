@@ -11,7 +11,7 @@ install:
   - python bootstrap-buildout.py
   - bin/buildout -N
 script:
-  - make test -k
+  - make -k test
 after_success:
   - easy_install coveralls
   - coveralls
