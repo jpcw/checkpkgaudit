@@ -4,7 +4,7 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- improve README with possible pypi ssl certificate problem, provide a workaround
 
 
 0.3 (2015-03-21)
@@ -25,3 +25,4 @@ Changelog
 ----------------
 
 - Jean-Philippe Camguilhem <jp.camguilhem__at__gmail.com>
+

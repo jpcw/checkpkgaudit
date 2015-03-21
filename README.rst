@@ -89,7 +89,7 @@ sample outputs :
           
 
 Install
--------
+------------
 
 easy_install | pip within or not a virtualenv::
     
@@ -97,14 +97,20 @@ easy_install | pip within or not a virtualenv::
 
 check_pkgaudit is located at /usr/local/bin/check_pkgaudit
 
+.. warning:: If you encountered an ssl certificate error with easy_install
+
+ ::
+  
+  pkg install -y ca_root_nss
+  ln -s /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
+
 
 Nagios|icinga like configuration
 -----------------------------------
 
 check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
 
-check_by_ssh
-++++++++++++++
+**check_by_ssh**
 
 here a sample definition to check remotely by ssh 
 
@@ -124,8 +130,7 @@ the service itself ::
         check_command           check_ssh_pkgaudit!
     }
 
-NRPE
-+++++
+**NRPE**
 
 add this line to /usr/local/etc/nrpe.cfg ::
      
