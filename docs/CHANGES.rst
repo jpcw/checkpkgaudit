@@ -1,10 +1,8 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2015-03-21)
 ----------------
-
-- Nothing changed yet.
 
 - fix install README typo -- Nicolas RAHIR nox
 
