@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2015-03-21)
 ----------------
 
 - improve README with possible pypi ssl certificate problem, provide a workaround
