@@ -6,6 +6,10 @@ Changelog
 
 - Nothing changed yet.
 
+- fix install README typo -- Nicolas RAHIR nox
+
+- add NRPE conf sample -- Nicolas RAHIR nox
+
 
 0.2 (2015-03-06)
 ----------------

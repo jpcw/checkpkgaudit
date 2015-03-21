@@ -93,7 +93,7 @@ Install
 
 easy_install | pip within or not a virtualenv::
     
-    easy_install | pip install check_pkgaudit
+    easy_install | pip install checkpkgaudit
 
 check_pkgaudit is located at /usr/local/bin/check_pkgaudit
 
@@ -102,6 +102,9 @@ Nagios|icinga like configuration
 -----------------------------------
 
 check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
+
+check_by_ssh
+++++++++++++++
 
 here a sample definition to check remotely by ssh 
 
@@ -120,6 +123,31 @@ the service itself ::
         service_description     pkg audit
         check_command           check_ssh_pkgaudit!
     }
+
+NRPE
++++++
+
+add this line to /usr/local/etc/nrpe.cfg ::
+     
+    ...
+    command[check_pkgaudit]=/usr/local/bin/check_pkgaudit
+    ...
+
+nagios command definition ::
+    
+    define command{
+        command_name    check_nrpe_pkgaudit
+        command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_pkgaudit
+    }
+
+the service itself ::
+    
+    define service{
+        use                     my-service
+        host_name               hostname
+        service_description     pkg audit
+        check_command           check_nrpe_pkgaudit
+    }   
 
 testing
 ---------
