@@ -1,32 +1,28 @@
 
-
 ==========================================================
 Check FreeBSD pkg audit Nagios|Icinga|shinken|etc plugin.
 ==========================================================
 
-.. image:: https://pypip.in/license/checkpkgaudit/badge.svg
+.. image:: https://img.shields.io/pypi/l/checkpkgaudit.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
 
-.. image:: https://pypip.in/egg/checkpkgaudit/badge.svg
+.. image:: https://img.shields.io/pypi/implementation/checkpkgaudit.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
 
-.. image:: https://pypip.in/status/checkpkgaudit/badge.svg
+.. image:: https://img.shields.io/pypi/pyversions/checkpkgaudit.svg
     :target: https://pypi.python.org/pypi/checkpkgaudit/
 
-.. image:: https://pypip.in/implementation/checkpkgaudit/badge.svg
-    :target: https://pypi.python.org/pypi/checkpkgaudit/
-
-.. image:: https://pypip.in/py_versions/checkpkgaudit/badge.svg
-    :target: https://pypi.python.org/pypi/checkpkgaudit/
-
-.. image:: https://pypip.in/version/checkpkgaudit/badge.svg?text=version
+.. image:: https://img.shields.io/pypi/v/checkpkgaudit.svg
       :target: https://pypi.python.org/pypi/checkpkgaudit/
+
+.. image:: https://img.shields.io/pypi/status/checkpkgaudit.svg
+    :target: https://pypi.python.org/pypi/checkpkgaudit/
+
+.. image:: https://img.shields.io/coveralls/jpcw/checkpkgaudit.svg
+      :target: https://coveralls.io/r/jpcw/checkpkgaudit
 
 .. image:: https://api.travis-ci.org/jpcw/checkpkgaudit.svg?branch=master
       :target: http://travis-ci.org/jpcw/checkpkgaudit
-
-.. image:: https://coveralls.io/repos/jpcw/checkpkgaudit/badge.png?branch=master
-      :target: https://coveralls.io/r/jpcw/checkpkgaudit
 
 + Source: https://github.com/jpcw/checkpkgaudit
 
