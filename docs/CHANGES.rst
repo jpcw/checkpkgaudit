@@ -4,7 +4,7 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- add support for jails with different jail- and hostnames,  thanks StbX
 
 
 0.4 (2015-03-21)
