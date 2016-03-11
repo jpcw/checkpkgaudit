@@ -35,7 +35,12 @@ class Test__getjails(unittest.TestCase):
     def test__get_jls_running_jails(self):
         meth = checkpkgaudit._get_jails
         mocked = "checkpkgaudit.checkpkgaudit.subprocess"
-        jls = ['masterdns', 'smtp', 'ns0', 'ns1', 'http', 'supervision']
+        jls = [{'hostname': 'masterdns', 'jid': '50'},
+               {'hostname': 'smtp', 'jid': '52'},
+               {'hostname': 'ns0', 'jid': '54'},
+               {'hostname': 'ns1', 'jid': '55'},
+               {'hostname': 'http', 'jid': '57'},
+               {'hostname': 'supervision', 'jid': '59'}]
         with mock.patch(mocked) as subprocess:
             subprocess.check_output.return_value = ''.join(jails)
             self.assertEqual(meth(), jls)
@@ -133,12 +138,11 @@ class Test_CheckPkgAudit(unittest.TestCase):
         check.hostname = 'hostname.domain.tld'
         mocked = "checkpkgaudit.checkpkgaudit._get_jails"
         with mock.patch(mocked) as _get_jails:
-            _get_jails.return_value = ['inxeistent_jail']
+            _get_jails.return_value = [{'hostname': 'masterdns', 'jid': '50'}]
 
             mocked = "checkpkgaudit.checkpkgaudit.CheckPkgAudit.pkg_audit"
             with mock.patch(mocked) as pkg_audit:
                 pkg_audit.return_value = 0
-
                 probe = check.probe()
                 host = next(probe)
                 self.assertIsNotNone(host)

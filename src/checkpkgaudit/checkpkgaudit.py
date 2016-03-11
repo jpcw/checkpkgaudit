@@ -33,12 +33,13 @@ def _popen(cmd):  # pragma: no cover
 
 def _get_jails():
     """Provides running jails."""
-    jailnames = []
+    jailargs = []
     jls = subprocess.check_output('jls')
     jails = jls.splitlines()[1:]
     if jails:
-        jailnames = [jail.split()[2] for jail in jails]
-    return jailnames
+        jailargs = [{'jid': jail.split()[0], 'hostname': jail.split()[2]}
+                    for jail in jails]
+    return jailargs
 
 
 class CheckPkgAudit(nagiosplugin.Resource):
@@ -83,10 +84,11 @@ class CheckPkgAudit(nagiosplugin.Resource):
         yield nagiosplugin.Metric(self.hostname, self.pkg_audit(),
                                   min=0, context="pkg_audit")
         # yield running jails
-        jailnames = _get_jails()
-        if jailnames:
-            for jailname in jailnames:
-                yield nagiosplugin.Metric(jailname, self.pkg_audit(jailname),
+        jails = _get_jails()
+        if jails:
+            for jail in jails:
+                yield nagiosplugin.Metric(jail['hostname'],
+                                          self.pkg_audit(jail['jid']),
                                           min=0, context="pkg_audit")
 
 
