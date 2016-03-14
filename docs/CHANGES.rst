@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6 (unreleased)
+0.6 (2016-03-14)
 ----------------
 
 - add exclusion for hastd thanks voileux
