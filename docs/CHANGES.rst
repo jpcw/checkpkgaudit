@@ -4,7 +4,7 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- add exclusion for hastd
 
 
 0.5 (2016-03-11)
