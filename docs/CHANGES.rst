@@ -4,7 +4,7 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- add exclusion for hastd
+- add exclusion for hastd thanks voileux
 
 
 0.5 (2016-03-11)
