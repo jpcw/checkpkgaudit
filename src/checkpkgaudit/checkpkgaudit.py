@@ -38,7 +38,8 @@ def _get_jails():
     jails = jls.splitlines()[1:]
     if jails:
         jailargs = [{'jid': jail.split()[0], 'hostname': jail.split()[2]}
-                    for jail in jails]
+                    for jail in jails if not
+                    jail.split()[2].startswith('hastd:') ]
     return jailargs
 
 

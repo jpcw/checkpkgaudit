@@ -16,6 +16,7 @@ no_jails = "   JID  IP Address      Hostname        Path"
 
 jails = ("    JID  IP Address      Hostname         Path\n",
          "     50  10.0.0.93       masterdns        /usr/jails/masterdns\n",
+         "     51  -               hastd: disk1 (primary)        /var/empty\n",
          "     52  10.0.0.25       smtp             /usr/jails/smtp\n",
          "     54  10.0.0.53       ns0              /usr/jails/ns0\n",
          "     55  10.0.0.153      ns1              /usr/jails/ns1\n",
