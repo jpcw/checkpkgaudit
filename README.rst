@@ -113,7 +113,8 @@ Nagios|icinga like configuration
 
 check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
 
-**check_by_ssh**
+check_by_ssh
+^^^^^^^^^^^^
 
 here a sample definition to check remotely by ssh 
 
@@ -159,7 +160,8 @@ icinga2 service ::
 	}
     
 
-**NRPE**
+NRPE
+^^^^
 
 add this line to /usr/local/etc/nrpe.cfg ::
      
