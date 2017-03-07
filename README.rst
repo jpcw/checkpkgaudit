@@ -100,9 +100,11 @@ Within or not a virtualenv:
 
 **check_pkgaudit** is located at /usr/local/bin/check_pkgaudit
 
-.. warning::
+.. warning:: SSL certificate error
 
-    If you encountered an ssl certificate error with easy_install
+    If you encountered an ssl certificate error with easy_install,
+    you probably need to install the Root certificate bundle 
+    from the Mozilla Project:
 
 .. code-block:: console
   
