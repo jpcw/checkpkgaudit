@@ -100,7 +100,9 @@ Within or not a virtualenv:
 
 **check_pkgaudit** is located at /usr/local/bin/check_pkgaudit
 
-.. warning:: If you encountered an ssl certificate error with easy_install
+.. warning::
+
+    If you encountered an ssl certificate error with easy_install
 
 .. code-block:: console
   
