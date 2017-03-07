@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7 (unreleased)
+0.7 (2017-03-07)
 ----------------
 
 - fix missing ip jls output with vnet jails https://github.com/jpcw/checkpkgaudit/issues/4 thanks blQn
