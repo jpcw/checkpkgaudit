@@ -4,7 +4,8 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- fix missing ip jls output with vnet jails https://github.com/jpcw/checkpkgaudit/issues/4 thanks blQn
+- remove py2.6 and py32 support, add py3.6 support
 
 
 0.6 (2016-03-14)
