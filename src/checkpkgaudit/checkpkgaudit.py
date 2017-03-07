@@ -37,9 +37,12 @@ def _get_jails():
     jls = subprocess.check_output('jls')
     jails = jls.splitlines()[1:]
     if jails:
-        jailargs = [{'jid': jail.split()[0], 'hostname': jail.split()[2]}
-                    for jail in jails if not
-                    jail.split()[2].startswith('hastd:')]
+        jailargs = list()
+        for jail in jails:
+            host_idx = 1 if len(jail.split()) == 3 else 2
+            if not jail.split()[host_idx].startswith('hastd:'):
+                jailargs.append({'jid': jail.split()[0],
+                                 'hostname': jail.split()[host_idx]})
     return jailargs
 
 

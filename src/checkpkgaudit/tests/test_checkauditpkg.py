@@ -21,7 +21,8 @@ jails = ("    JID  IP Address      Hostname         Path\n",
          "     54  10.0.0.53       ns0              /usr/jails/ns0\n",
          "     55  10.0.0.153      ns1              /usr/jails/ns1\n",
          "     57  10.0.0.80       http             /usr/jails/http\n",
-         "     59  10.0.0.20       supervision      /usr/jails/supervision\n")
+         "     59  10.0.0.20       supervision      /usr/jails/supervision\n",
+         "     61                  formationpy      /usr/jails/formationpy\n")
 
 
 class Test__getjails(unittest.TestCase):
@@ -41,7 +42,8 @@ class Test__getjails(unittest.TestCase):
                {'hostname': 'ns0', 'jid': '54'},
                {'hostname': 'ns1', 'jid': '55'},
                {'hostname': 'http', 'jid': '57'},
-               {'hostname': 'supervision', 'jid': '59'}]
+               {'hostname': 'supervision', 'jid': '59'},
+               {'hostname': 'formationpy', 'jid': '61'}]
         with mock.patch(mocked) as subprocess:
             subprocess.check_output.return_value = ''.join(jails)
             self.assertEqual(meth(), jls)
