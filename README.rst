@@ -87,15 +87,22 @@ sample outputs :
 Install
 ------------
 
-easy_install | pip within or not a virtualenv::
-    
-    easy_install | pip install checkpkgaudit
+**checkpkgaudit** can be installed via 
+either **easy_install** or **pip** .
 
-check_pkgaudit is located at /usr/local/bin/check_pkgaudit
+Within or not a virtualenv:
+
+.. code-block:: console    
+
+    easy_install checkpkgaudit 
+    # or
+    pip install checkpkgaudit
+
+**check_pkgaudit** is located at /usr/local/bin/check_pkgaudit
 
 .. warning:: If you encountered an ssl certificate error with easy_install
 
- ::
+.. code-block:: console
   
   pkg install -y ca_root_nss
   ln -s /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
