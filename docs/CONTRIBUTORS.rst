@@ -1,5 +1,7 @@
 Contributors
 ==============
+Thomas BALDAQUIN blQn
+
 Simon RECHER voileux
 
 Steffen Brandemann StbX
