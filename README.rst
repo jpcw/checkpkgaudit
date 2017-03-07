@@ -125,6 +125,32 @@ the service itself ::
         service_description     pkg audit
         check_command           check_ssh_pkgaudit!
     }
+    
+icinga2 command ::
+    
+	object CheckCommand "pkgaudit" {
+        import "plugin-check-command"
+        import "ipv4-or-ipv6"
+        command = [ PluginDir + "/check_by_ssh" ]
+        arguments = {
+            "-H" = "$openbgpd_address$"
+            "-i" = "$ssh_id$"
+            "-p" = "$ssh_port$"
+            "-C" = "$ssh_command$"
+    	    }
+        vars.openbgpd_address = "$check_address$"
+        vars.ssh_id = "/var/spool/icinga/.ssh/id_rsa"
+        vars.ssh_port = "$vars.ssh_port$"
+        vars.ssh_command = "sudo /usr/local/bin/check_pkgaudit"
+	}
+
+icinga2 service ::
+	
+	apply Service "pkgaudit" {
+  	    check_command = "pkgaudit"
+  	    assign where host.name == "hostname"
+	}
+    
 
 **NRPE**
 
