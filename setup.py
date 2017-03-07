@@ -18,6 +18,7 @@ def read_file(*pathes):
     else:
         return ''
 
+
 desc_files = (('README.rst',), ('docs', 'CHANGES.rst'),
               ('docs', 'CONTRIBUTORS.rst'))
 
@@ -29,6 +30,7 @@ if sys.version_info < (2, 7):
     extras_require = {'test': ['setuptools', 'mock', 'unittest2', 'argparse']}
 else:
     extras_require = {'test': ['setuptools', 'mock']}
+
 
 setup(name='checkpkgaudit',
       version=version,
@@ -45,12 +47,11 @@ setup(name='checkpkgaudit',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Operating System :: POSIX :: BSD :: FreeBSD',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
@@ -58,7 +59,7 @@ setup(name='checkpkgaudit',
         ],
       keywords="Nagios Icinga plugin check pkg audit monitoring",
       author="Jean-Philippe Camguilhem",
-      author_email="jp.camguilhem__at__gmail.com",
+      author_email="jpcw__at__camguilhem.net",
       url="https://github.com/jpcw/check_pkgaudit",
       license="BSD",
       packages=find_packages("src"),
