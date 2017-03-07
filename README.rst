@@ -133,12 +133,12 @@ icinga2 command ::
         import "ipv4-or-ipv6"
         command = [ PluginDir + "/check_by_ssh" ]
         arguments = {
-            "-H" = "$openbgpd_address$"
+            "-H" = "$address$"
             "-i" = "$ssh_id$"
             "-p" = "$ssh_port$"
             "-C" = "$ssh_command$"
     	    }
-        vars.openbgpd_address = "$check_address$"
+        vars.address = "$check_address$"
         vars.ssh_id = "/var/spool/icinga/.ssh/id_rsa"
         vars.ssh_port = "$vars.ssh_port$"
         vars.ssh_command = "sudo /usr/local/bin/check_pkgaudit"
