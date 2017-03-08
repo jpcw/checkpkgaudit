@@ -115,7 +115,8 @@ Within or not a virtualenv:
 Nagios|icinga like configuration
 -----------------------------------
 
-check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
+**check_pkgaudit** could be called localy or remotely 
+via **check_by_ssh** or **NRPE**.
 
 check_by_ssh
 ^^^^^^^^^^^^
