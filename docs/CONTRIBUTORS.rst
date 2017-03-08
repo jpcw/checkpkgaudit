@@ -1,14 +1,16 @@
 Contributors
 ==============
-Damien LACOSTE Dam64
+Mathias : Lcaracol
 
-Thomas BALDAQUIN blQn
+Damien LACOSTE : Dam64
 
-Simon RECHER voileux
+Thomas BALDAQUIN : blQn
 
-Steffen Brandemann StbX
+Simon RECHER : voileux
 
-Nicolas RAHIR nox
+Steffen Brandemann : StbX
+
+Nicolas RAHIR : nox
 
 Jean-Philippe Camguilhem, Author
 
