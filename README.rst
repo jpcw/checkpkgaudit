@@ -87,15 +87,26 @@ sample outputs :
 Install
 ------------
 
-easy_install | pip within or not a virtualenv::
-    
-    easy_install | pip install checkpkgaudit
+**checkpkgaudit** can be installed via 
+either **easy_install** or **pip** .
 
-check_pkgaudit is located at /usr/local/bin/check_pkgaudit
+Within or not a virtualenv:
 
-.. warning:: If you encountered an ssl certificate error with easy_install
+.. code-block:: console    
 
- ::
+    easy_install checkpkgaudit 
+    # or
+    pip install checkpkgaudit
+
+**check_pkgaudit** is located at /usr/local/bin/check_pkgaudit
+
+.. warning:: SSL certificate error
+
+    If you encountered an ssl certificate error with easy_install,
+    you probably need to install the Root certificate bundle 
+    from the Mozilla Project:
+
+.. code-block:: console
   
   pkg install -y ca_root_nss
   ln -s /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem
@@ -104,9 +115,11 @@ check_pkgaudit is located at /usr/local/bin/check_pkgaudit
 Nagios|icinga like configuration
 -----------------------------------
 
-check_pkgaudit could be called localy or remotely via check_by_ssh or NRPE.
+**check_pkgaudit** could be called localy or remotely 
+via **check_by_ssh** or **NRPE**.
 
-**check_by_ssh**
+check_by_ssh
+^^^^^^^^^^^^
 
 here a sample definition to check remotely by ssh 
 
@@ -152,7 +165,8 @@ icinga2 service ::
 	}
     
 
-**NRPE**
+NRPE
+^^^^
 
 add this line to /usr/local/etc/nrpe.cfg ::
      
@@ -178,9 +192,10 @@ the service itself ::
 
 testing
 ---------
-::
-     
-     python bootstrap-buildout.py --setuptools-version=33.1.1 --buildout-version=2.5.2
-     bin/buildout -N
-     bin/test
-     
+
+.. code-block:: shell
+
+    python bootstrap-buildout.py --setuptools-version=33.1.1 --buildout-version=2.5.2
+    bin/buildout -N
+    bin/test
+
