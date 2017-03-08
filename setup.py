@@ -2,8 +2,6 @@
 
 from setuptools import setup, find_packages
 import os
-import sys
-
 
 version = '0.7.1.dev0'
 
@@ -26,10 +24,7 @@ long_description = '\n\n'.join([read_file(*pathes) for pathes in desc_files])
 
 install_requires = ['nagiosplugin']
 
-if sys.version_info < (2, 7):
-    extras_require = {'test': ['setuptools', 'mock', 'unittest2', 'argparse']}
-else:
-    extras_require = {'test': ['setuptools', 'mock']}
+extras_require = {'test': ['setuptools', 'mock']}
 
 
 setup(name='checkpkgaudit',
