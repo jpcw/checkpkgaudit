@@ -192,7 +192,6 @@ the service itself ::
 
 testing
 ---------
-::
 
 .. code-block:: console
 
