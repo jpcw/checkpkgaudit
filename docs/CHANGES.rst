@@ -4,7 +4,7 @@ Changelog
 0.7.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- fix python3 support https://github.com/jpcw/checkpkgaudit/issues/10
 
 
 0.7.1 (2017-03-08)
