@@ -35,6 +35,8 @@ def _get_jails():
     """Provides running jails."""
     jailargs = []
     jls = subprocess.check_output('jls')
+    if not isinstance(jls, str):  # pragma: no cover
+        jls = jls.decode()
     jails = jls.splitlines()[1:]
     if jails:
         jailargs = list()
@@ -65,6 +67,11 @@ class CheckPkgAudit(nagiosplugin.Resource):
         _log.debug('querying system with "%s" command', self.audit_cmd)
 
         stdout, stderr = _popen(self.audit_cmd.split())
+
+        if not isinstance(stderr, str):  # pragma: no cover
+            stderr = stderr.decode()
+        if not isinstance(stdout, str):  # pragma: no cover
+            stdout = stdout.decode()
 
         if stderr:
             message = stderr.splitlines()[-1]
@@ -152,6 +159,7 @@ def main():  # pragma: no cover
                                                           '@1:'),
                                AuditSummary())
     check.main(verbose=args.verbose)
+
 
 if __name__ == '__main__':  # pragma: no cover
     main()
