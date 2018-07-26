@@ -5,6 +5,7 @@ python:
   - 3.4
   - 3.5
   - 3.6
+  - 3.7
   - pypy
 install:
   - python bootstrap-buildout.py --setuptools-version=33.1.1 --buildout-version=2.5.2
